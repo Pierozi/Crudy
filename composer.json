@@ -1,0 +1,6 @@
+{
+    "require": {
+        "codeception/codeception": "^2.2",
+	"hoa/router": "~3.0"
+    }
+}

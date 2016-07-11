@@ -1,0 +1,4 @@
+2016/07/10 17:25:56 [error] 9#0: *4 FastCGI sent in stderr: "PHP message: PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+Unable to open primary script: /app/src/public/index.php (No such file or directory)" while reading response header from upstream, client: 172.17.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "fastcgi://172.17.0.11:9000", host: "dev:8010"
+2016/07/10 17:25:57 [error] 9#0: *4 FastCGI sent in stderr: "PHP message: PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+Unable to open primary script: /app/src/public/index.php (No such file or directory)" while reading response header from upstream, client: 172.17.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.17.0.11:9000", host: "dev:8010", referrer: "http://dev:8010/"

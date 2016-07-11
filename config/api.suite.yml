@@ -1,0 +1,8 @@
+class_name: ApiTester
+modules:
+    enabled:
+        - REST:
+            url: http://§devPath§/api/v1/
+            depends: PhpBrowser
+            part: Json
+        - \Helper\Api
