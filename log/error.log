@@ -292,3 +292,29 @@ Stack trace:
 #2 /app/public/index.php(31): JsonApi\Server\Server->resolve()
 #3 {main}
   thrown in /app/src/Server/Dispatcher.php on line 124" while reading response header from upstream, client: 172.17.0.1, server: localhost, request: "GET /articles HTTP/1.1", upstream: "fastcgi://172.17.0.8:9000", host: "dev:8010"
+2016/07/11 16:34:57 [error] 9#0: *143 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Hoa\Router\Exception\NotFound: Cannot found an appropriated rule to route api/v1//health. in /app/vendor/hoa/router/Http/Http.php:388
+Stack trace:
+#0 /app/vendor/hoa/dispatcher/Dispatcher.php(133): Hoa\Router\Http\Http->route()
+#1 /app/src/Server/Server.php(47): Hoa\Dispatcher\Dispatcher->dispatch(Object(Hoa\Router\Http\Http), Object(JsonApi\Server\JsonApiView))
+#2 /app/public/index.php(31): JsonApi\Server\Server->resolve()
+#3 {main}
+
+Next Exception: Cannot found an appropriated rule to route api/v1//health. in /app/src/Server/Server.php:95
+Stack trace:
+#0 [internal function]: JsonApi\Server\Server->JsonApi\Server\{closure}(Object(Hoa\Event\Bucket))
+#1 /app/vendor/hoa/consistency/Xcallable.php(160): call_user_func_array(Object(Closure), Array)
+#2 /app/vendor/hoa/event/Event.php(244): Hoa\Consistency\Xcallable->__invoke(Object(Hoa\Event\Bucket))
+#3 /app/vendor/hoa/exception/Exception.php(91): Hoa\Event\Event::notify('hoa://Event/Exc...', Object(Hoa\Router\Exception\N" while reading response header from upstream, client: 172.17.0.1, server: localhost, request: "GET /api/v1//health HTTP/1.1", upstream: "fastcgi://172.17.0.8:9000", host: "dev:8010"
+2016/07/11 16:37:57 [error] 9#0: *145 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Hoa\Router\Exception\NotFound: Cannot found an appropriated rule to route api/v1//health. in /app/vendor/hoa/router/Http/Http.php:388
+Stack trace:
+#0 /app/vendor/hoa/dispatcher/Dispatcher.php(133): Hoa\Router\Http\Http->route()
+#1 /app/src/Server/Server.php(47): Hoa\Dispatcher\Dispatcher->dispatch(Object(Hoa\Router\Http\Http), Object(JsonApi\Server\JsonApiView))
+#2 /app/public/index.php(31): JsonApi\Server\Server->resolve()
+#3 {main}
+
+Next Exception: Cannot found an appropriated rule to route api/v1//health. in /app/src/Server/Server.php:95
+Stack trace:
+#0 [internal function]: JsonApi\Server\Server->JsonApi\Server\{closure}(Object(Hoa\Event\Bucket))
+#1 /app/vendor/hoa/consistency/Xcallable.php(160): call_user_func_array(Object(Closure), Array)
+#2 /app/vendor/hoa/event/Event.php(244): Hoa\Consistency\Xcallable->__invoke(Object(Hoa\Event\Bucket))
+#3 /app/vendor/hoa/exception/Exception.php(91): Hoa\Event\Event::notify('hoa://Event/Exc...', Object(Hoa\Router\Exception\N" while reading response header from upstream, client: 172.17.0.1, server: localhost, request: "GET /api/v1//health HTTP/1.1", upstream: "fastcgi://172.17.0.8:9000", host: "dev:8010"

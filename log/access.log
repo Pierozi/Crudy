@@ -157,3 +157,5 @@
 172.17.0.1 - - [11/Jul/2016:15:39:29 +0000] "GET /articles HTTP/1.1" 200 73 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36"
 172.17.0.1 - - [11/Jul/2016:16:08:02 +0000] "GET /articles HTTP/1.1" 200 73 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36"
 172.17.0.1 - - [11/Jul/2016:16:08:09 +0000] "GET /articles/abc12-21564 HTTP/1.1" 200 203 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36"
+172.17.0.1 - - [11/Jul/2016:16:34:57 +0000] "GET /api/v1//health HTTP/1.1" 200 4692 "-" "Symfony2 BrowserKit"
+172.17.0.1 - - [11/Jul/2016:16:37:57 +0000] "GET /api/v1//health HTTP/1.1" 200 4692 "-" "Symfony2 BrowserKit"
