@@ -27,3 +27,5 @@ replace-var-config:
 	grep -rl '§devPath§' config | xargs sed -i 's/§devPath§/$(devpath)/g'
 	cp config/api.suite.yml tests/api.suite.yml
 
+log-error:
+	tail -f -n 0 log/error.log
