@@ -1,16 +1,9 @@
 <?php
-/*
+
 $I = new ApiTester($scenario);
-$I->wantTo('Control the server responsibilities Headers');
+$I->wantTo('Server must accept header');
+$I->haveHttpHeader('ACCEPT', 'application/vnd.api+json');
 $I->sendGET('/health');
 $I->seeResponseCodeIs(200);
+$I->seeHttpHeader('Content-Type', 'application/vnd.api+json');
 $I->seeResponseIsJson();
-$I->seeResponseContains('{"success":"ok"}');
-*/
-
-
-$I = new ApiTester($scenario);
-$I->wantTo('Server must reject header');
-$I->sendGET('/health');
-$I->seeResponseCodeIs(406);
-
