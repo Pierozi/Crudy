@@ -1,6 +1,6 @@
 <?php
 
-namespace JsonApi\Server;
+namespace Crudy\Server;
 
 use Hoa\Consistency;
 use Hoa\Router;

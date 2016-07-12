@@ -1,10 +1,11 @@
 {
-  "name": "plab/json-api",
+  "name": "plab/crudy",
   "require": {
     "hoa/router": "~3.0",
     "hoa/dispatcher": "~1.0",
     "hoa/view": "~3.0",
-    "hoa/exception": "~1.0"
+    "hoa/exception": "~1.0",
+    "ihor/nspl": "~1.0"
   },
   "require-dev": {
     "codeception/codeception": "^2.2",
@@ -12,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "JsonApi\\": "src/",
+      "Crudy\\": "src/",
       "Application\\": "public/"
     }
   }

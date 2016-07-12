@@ -27,5 +27,5 @@ if (defined('__DEV_MODE__')) {
  */
 date_default_timezone_set('Europe/Paris');
 
-$Server = new \JsonApi\Server\Server();
+$Server = new \Crudy\Server\Server();
 $Server->resolve();

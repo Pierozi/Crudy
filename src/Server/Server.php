@@ -1,13 +1,17 @@
 <?php
 
-namespace JsonApi\Server;
+namespace Crudy\Server;
+use Crudy\Server\JsonApi\Document;
+use Crudy\Server\JsonApi\Exception;
+use Crudy\Server\JsonApi\View;
 use Hoa\Event\Bucket;
 use Hoa\Event\Event;
+use Hoa\Router\Exception\NotFound;
 use Hoa\Router\Http\Http;
 
 /**
  * Class Server
- * @package JsonApi\Server
+ * @package Crudy\Server
  */
 class Server
 {
@@ -23,12 +27,21 @@ class Server
     protected $dispatcher;
 
     /**
+     * @var Document
+     */
+    protected $document;
+
+    /**
      * Server constructor.
      */
     public function __construct ()
     {
+        $this->router = new Http();
+
         $this->errorHandler();
         $this->registerRules();
+
+        $this->document = new Document($this->router);
     }
 
     /**
@@ -36,7 +49,7 @@ class Server
      */
     public function resolve()
     {
-        $view = new JsonApiView();
+        $view = new View();
 
         $this->dispatcher = new Dispatcher([
             'resource.root.ns' => '\Application\Resources',
@@ -54,8 +67,6 @@ class Server
      */
     protected function registerRules()
     {
-        $this->router = new Http();
-
         // Create resource rule
         $this->router
             ->post('cr', '(?<resourceName>[a-z-]+)/?')
@@ -90,6 +101,16 @@ class Server
         Event::getEvent('hoa://Event/Exception')->attach(
             function (Bucket $bucket) {
                 $exception = $bucket->getData();
+
+                if ($exception instanceof Exception) {
+
+                    die($exception->toJson());
+                }
+
+                if ($exception instanceof NotFound) {
+
+                    die('not found');
+                }
 
                 if (defined('__DEV_MODE__')) {
                     throw new \Exception($exception->getMessage(), $exception->getCode(), $exception);

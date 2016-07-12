@@ -2,7 +2,7 @@ class_name: ApiTester
 modules:
     enabled:
         - REST:
-            url: http://dev:8010/api/v1/
+            url: http://dev:8010/
             depends: PhpBrowser
             part: Json
         - \Helper\Api

@@ -1,10 +1,10 @@
 <?php
 
-namespace JsonApi\Server;
+namespace Crudy\Server;
 
 /**
  * Class Resource
- * @package JsonApi\Server
+ * @package Crudy\Server
  */
 class Kit extends \Hoa\Dispatcher\Kit
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonApi\Server;
+namespace Crudy\Server\JsonApi;
 
-class JsonApiView implements \Hoa\View\Viewable
+class View implements \Hoa\View\Viewable
 {
     /**
      * @description 'Get the output stream.';
