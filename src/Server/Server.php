@@ -107,9 +107,9 @@ class Server
                     die($exception->toJson());
                 }
 
-                if ($exception instanceof NotFound) {
+                if ($exception instanceof NotFound || $exception instanceof \Hoa\Dispatcher\Exception) {
 
-                    die('not found');
+                    new Exception('Resource not found', 404);
                 }
 
                 if (defined('__DEV_MODE__')) {

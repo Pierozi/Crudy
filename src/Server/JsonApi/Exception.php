@@ -82,8 +82,14 @@ class Exception extends \Hoa\Exception\Exception
             $code = 500;
         }
 
-        header('Content-Type: ' . Document::CONTENT_TYPE);
         header($_SERVER['SERVER_PROTOCOL']." $code " . self::HTTP_STATUS[$code], null, $code);
+
+        if (404 === $code) {
+
+            return '';
+        }
+
+        header('Content-Type: ' . Document::CONTENT_TYPE);
 
         return json_encode([
             'status' => $code,

@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonApi\Server\Crud;
+namespace Crudy\Server\Crud;
 
-use JsonApi\Server\Kit;
+use Crudy\Server\Kit;
 
 interface ReadInterface
 {

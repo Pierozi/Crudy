@@ -1,6 +1,6 @@
 <?php
 
-namespace JsonApi\Server\Crud;
+namespace Crudy\Server\Crud;
 
 interface CreateInterface
 {

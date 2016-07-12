@@ -2,7 +2,7 @@
 
 namespace Application\Resources\Articles;
 
-use JsonApi\Server\Crud\CreateInterface;
+use Crudy\Server\Crud\CreateInterface;
 
 class Create extends Resource implements CreateInterface
 {

@@ -2,8 +2,8 @@
 
 namespace Application\Resources\Articles;
 
-use JsonApi\Server\Crud\ReadInterface;
-use JsonApi\Server\Kit;
+use Crudy\Server\Crud\ReadInterface;
+use Crudy\Server\Kit;
 
 class Read extends Resource implements ReadInterface
 {

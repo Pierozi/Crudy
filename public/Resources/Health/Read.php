@@ -2,8 +2,9 @@
 
 namespace Application\Resources\Health;
 
-use JsonApi\Server\Crud\ReadInterface;
-use JsonApi\Server\Kit;
+use Crudy\Server\Crud\ReadInterface;
+use Crudy\Server\JsonApi\Exception;
+use Crudy\Server\Kit;
 
 class Read implements ReadInterface
 {
@@ -14,8 +15,12 @@ class Read implements ReadInterface
 
     public function readAll(Kit $_this)
     {
-        echo __METHOD__, "\n";
+        /*echo __METHOD__, "\n";
 
-        $_this->view->getData();
+        $_this->view->getData();*/
+
+        //TODO replace by real usecase when view ready
+
+        throw new Exception('JsonView not yet implemented', 200);
     }
 }
