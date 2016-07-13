@@ -54,8 +54,8 @@ class Kit extends \Hoa\Dispatcher\Kit
      */
     protected function createResource(
         string $id = null,
-        array $attributes,
-        array $meta = null
+        $attributes,
+        $meta = null
     ) {
         $resource = new Resource($this->type, $id);
 

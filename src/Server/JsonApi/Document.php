@@ -73,13 +73,22 @@ class Document
     public function extractData()
     {
         if (null !== $this->bodyAsJson) {
-            
-            return $this->bodyAsJson;
+
+            return $this->bodyAsJson->data->attributes;
         }
         
         $input = file_get_contents('php://input');
-        
-        return $this->bodyAsJson = json_decode($input);
+        $this->bodyAsJson = json_decode($input);
+
+        if (null === $this->bodyAsJson
+            || false === isset($this->bodyAsJson->data)
+            || false === isset($this->bodyAsJson->data->attributes)
+        ) {
+
+            return $this->bodyAsJson = null;
+        }
+
+        return $this->bodyAsJson->data->attributes;
     }
 
     /**

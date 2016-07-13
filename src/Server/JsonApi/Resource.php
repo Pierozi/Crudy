@@ -46,11 +46,18 @@ class Resource
      */
     public function toJson()
     {
-        return [
+        $response = [
             "type"       => $this->type,
             "id"         => $this->id,
             "attributes" => $this->attributes,
         ];
+
+        if (0 < count($this->meta)) {
+
+            $response['meta'] = $this->meta;
+        }
+
+        return $response;
     }
 
     /**
@@ -87,7 +94,7 @@ class Resource
      * @param bool $purge for drop existent value
      * @return $this
      */
-    public function fillMeta(array $meta = null, bool $purge = false)
+    public function fillMeta($meta = null, bool $purge = false)
     {
         if (null === $meta) {
             return $this;
@@ -107,7 +114,7 @@ class Resource
      * @param array $attributes
      * @return $this
      */
-    public function setAttributes(array $attributes)
+    public function setAttributes($attributes)
     {
         $this->attributes = $attributes;
 
