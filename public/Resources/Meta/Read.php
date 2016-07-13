@@ -9,6 +9,7 @@ class Read extends Resource implements ReadInterface
 {
     public function read(string $resourceId)
     {
+        $this->document->hideVersion();
     }
 
     public function readAll()

@@ -21,7 +21,18 @@ class Resource
      * @var array of attributes
      */
     protected $attributes;
-    
+
+    /**
+     * @var array of resource meta
+     */
+    protected $meta = [];
+
+    /**
+     * Resource constructor.
+     * @param string $type
+     * @param string|null $id
+     * @param array|null $attributes
+     */
     public function __construct(string $type, string $id = null, array $attributes = null)
     {
         $this->type       = $type;
@@ -56,5 +67,62 @@ class Resource
         }
         
         return $response;
+    }
+
+    /**
+     * @param string $key
+     * @param $value
+     * @return $this
+     */
+    public function setMeta(string $key, $value)
+    {
+        $this->meta[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Merge meta array with existent
+     * @param array|null $meta
+     * @param bool $purge for drop existent value
+     * @return $this
+     */
+    public function fillMeta(array $meta = null, bool $purge = false)
+    {
+        if (null === $meta) {
+            return $this;
+        }
+
+        if (true === $purge) {
+
+            $this->meta = [];
+        }
+
+        $this->meta += $meta;
+
+        return $this;
+    }
+
+    /**
+     * @param array $attributes
+     * @return $this
+     */
+    public function setAttributes(array $attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * @param string $key
+     * @param $value
+     * @return $this
+     */
+    public function setAttribute(string $key, $value)
+    {
+        $this->attributes[$key] = $value;
+
+        return $this;
     }
 }

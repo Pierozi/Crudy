@@ -12,13 +12,27 @@ class Document
     protected $router;
     protected $bodyAsJson;
     protected $responseHttpCode = 200;
+    protected $meta = [];
 
+    /**
+     * Document constructor.
+     * @param Http $router
+     */
     public function __construct (Http $router)
     {
         $this->router = $router;
         $this->headerResponsibilities();
+
+        $this->meta = [
+            "jsonapi" => [
+                "version" => self::SPECIFICATION_VERSION
+            ]
+        ];
     }
 
+    /**
+     * @throws Exception
+     */
     public function headerResponsibilities()
     {
         $contentType = null;
@@ -42,7 +56,7 @@ class Document
         if (!array_key_exists('HTTP_ACCEPT', $_SERVER)
             || self::CONTENT_TYPE !== $_SERVER['HTTP_ACCEPT']
         ) {
-            throw new Exception('Header must Accept Json-Api Protocol', 406);
+            throw new Exception('Header must Accept application/vnd.api+json', 406);
         }
 
         if (('post' === $method || 'put' === $method)
@@ -85,23 +99,29 @@ class Document
             $data[] = $resource->toJson();
         }
 
-        $response = [
-            "data" => $data,
-            "meta" => [
-                "jsonapi" => [
-                    "version" => self::SPECIFICATION_VERSION
-                ]
-            ]
-        ];
+        $response['data'] = $data;
+
+        if (0 < count($this->meta)) {
+
+            $response['meta'] = $this->meta;
+        }
 
         return json_encode($response);
     }
-    
+
+    /**
+     * @return int
+     */
     public function getHttpCode()
     {
         return $this->responseHttpCode;
     }
-    
+
+    /**
+     * @param $code
+     * @return $this
+     * @throws Exception
+     */
     public function setHttpCode($code)
     {
         if (in_array($code, Exception::HTTP_STATUS)) {
@@ -110,5 +130,46 @@ class Document
         }
         
         $this->responseHttpCode = $code;
+
+        return $this;
+    }
+
+    /**
+     * Hide JsonApi version into top level meta
+     * @param bool $hidden default true
+     * @return $this
+     */
+    public function hideVersion(bool $hidden = true)
+    {
+        if (true === $hidden
+            && array_key_exists('jsonapi', $this->meta)
+        ) {
+            unset($this->meta['jsonapi']);
+            return $this;
+        }
+
+        $this->meta['jsonapi'] = [
+            "version" => self::SPECIFICATION_VERSION
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @param string $key
+     * @param $value
+     * @return $this
+     * @throws Exception
+     */
+    public function setMeta(string $key, $value)
+    {
+        if ('jsonapi' === $key) {
+
+            throw new Exception('The meta '. $key .' are reserved for JsonApi protocol, thranks to use another key');
+        }
+
+        $this->meta[$key] = $value;
+
+        return $this;
     }
 }

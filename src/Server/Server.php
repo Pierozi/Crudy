@@ -69,7 +69,7 @@ class Server
     {
         // Create resource rule
         $this->router
-            ->post('cr', '(?<resourceName>[a-z-]+)/?')
+            ->post('cr', '(?<resourceName>[a-z-]+)/?', 'Create', 'create')
         ;
 
         // Read resource rule
@@ -84,12 +84,12 @@ class Server
 
         // Update resource rule
         $this->router
-            ->patch('ur', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-fA-F-]+)/?')
+            ->patch('ur', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-fA-F-]+)/?', 'Update', 'update')
         ;
 
         // Delete resource rule
         $this->router
-            ->delete('dr', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-fA-F-]+)/?')
+            ->delete('dr', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-fA-F-]+)/?', 'Delete', 'delete')
         ;
     }
 
