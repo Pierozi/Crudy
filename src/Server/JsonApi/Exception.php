@@ -92,12 +92,12 @@ class Exception extends \Hoa\Exception\Exception
         header('Content-Type: ' . Document::CONTENT_TYPE);
 
         return json_encode([
-            'errors' => [
+            'errors' => [[
                 'status' => $code,
-                'code' => $this->code,
-                'title' => self::HTTP_STATUS[$code],
+                'code'   => $this->code,
+                'title'  => self::HTTP_STATUS[$code],
                 'detail' => $this->getMessage(),
-            ]
+            ]]
         ]);
     }
 }

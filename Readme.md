@@ -100,13 +100,14 @@ GET /articles/1/comments HTTP/1.1
 
 # TU codeception
  - [x] Content Negotiation - Server Responsibilities
- - [ ] Document Structure - Top Level / input
+ - [x] Document Structure - Top Level / input
+ - [x] Single error object
+ - [ ] Multiples error object (with hoa group exception)
  - [ ] URL Parameters
   - [ ] fields
   - [ ] filters
   - [ ] offset //ID (NO USE OFFSET) it's better to use here an PRIMARY value for from instead integer position
   - [ ] limit  //Number of result from offset
- - [ ] Error result format
  - [ ] Create resource with result 200
  - [ ] Create resource without result 204
  - [ ] Create resource in asynchronous with result 200 and data URL with ID queue job
