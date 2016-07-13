@@ -49,7 +49,7 @@ class Server
      */
     public function resolve()
     {
-        $view = new View();
+        $view = new View($this->document);
 
         $this->dispatcher = new Dispatcher([
             'resource.root.ns' => '\Application\Resources',
@@ -59,7 +59,7 @@ class Server
         $this->dispatcher->setKitName(Kit::class);
         $this->dispatcher->dispatch($this->router, $view);
 
-        //TODO using $view for analyse result
+        $view->render();
     }
 
     /**

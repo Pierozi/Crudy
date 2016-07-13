@@ -99,7 +99,7 @@ GET /articles/1/comments HTTP/1.1
 # TODOS
 
 # TU codeception
- - [ ] Content Negotiation - Server Responsibilities
+ - [x] Content Negotiation - Server Responsibilities
  - [ ] Document Structure - Top Level / input
  - [ ] URL Parameters
   - [ ] fields

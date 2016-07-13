@@ -11,6 +11,7 @@ CYAN    := "\\033[1;36m"
 
 USER = $(shell whoami)
 GROUP = $(shell groups $(whoami) | cut -d' ' -f1)
+CID=crudy_php_1
 
 e?=testing
 

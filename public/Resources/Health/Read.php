@@ -2,25 +2,25 @@
 
 namespace Application\Resources\Health;
 
+use Application\Resources\Resource;
 use Crudy\Server\Crud\ReadInterface;
 use Crudy\Server\JsonApi\Exception;
-use Crudy\Server\Kit;
 
-class Read implements ReadInterface
+class Read extends Resource implements ReadInterface
 {
-    public function read(Kit $_this, string $resourceId)
+    public function read(string $resourceId)
     {
-        //TODO not supported
+        $this->addResource(null, [
+            'devMode'            => defined('__DEV_MODE__'),
+            'hasReceiveBodyData' => !is_null($this->data),
+        ]);
     }
 
-    public function readAll(Kit $_this)
+    public function readAll()
     {
-        /*echo __METHOD__, "\n";
-
-        $_this->view->getData();*/
-
-        //TODO replace by real usecase when view ready
-
-        throw new Exception('JsonView not yet implemented', 200);
+        $this->addResource(null, [
+            'devMode'            => defined('__DEV_MODE__'),
+            'hasReceiveBodyData' => !is_null($this->data),
+        ]);
     }
 }

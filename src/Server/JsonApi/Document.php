@@ -7,8 +7,11 @@ use Hoa\Router\Http\Http;
 class Document
 {
     const CONTENT_TYPE = 'application/vnd.api+json';
+    const SPECIFICATION_VERSION = '1.0';
 
     protected $router;
+    protected $bodyAsJson;
+    protected $responseHttpCode = 200;
 
     public function __construct (Http $router)
     {
@@ -47,5 +50,65 @@ class Document
         ) {
             throw new Exception('Unsupported Media Type', 415);
         }
+    }
+
+    /**
+     * Extract data node from body request as JsonAPI implementation describe
+     * @return mixed null | object json
+     */
+    public function extractData()
+    {
+        if (null !== $this->bodyAsJson) {
+            
+            return $this->bodyAsJson;
+        }
+        
+        $input = file_get_contents('php://input');
+        
+        return $this->bodyAsJson = json_decode($input);
+    }
+
+    /**
+     * @param \SplObjectStorage $resources
+     */
+    public function response(\SplObjectStorage $resources)
+    {
+        $data = [];
+
+        if (1 === $resources->count()) {
+
+            $data = $resources->current();
+        }
+
+        foreach ($resources as $resource) {
+
+            $data[] = $resource->toJson();
+        }
+
+        $response = [
+            "data" => $data,
+            "meta" => [
+                "jsonapi" => [
+                    "version" => self::SPECIFICATION_VERSION
+                ]
+            ]
+        ];
+
+        return json_encode($response);
+    }
+    
+    public function getHttpCode()
+    {
+        return $this->responseHttpCode;
+    }
+    
+    public function setHttpCode($code)
+    {
+        if (in_array($code, Exception::HTTP_STATUS)) {
+            
+            throw new Exception('Http code specified are not supported');
+        }
+        
+        $this->responseHttpCode = $code;
     }
 }

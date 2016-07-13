@@ -2,6 +2,8 @@
 
 namespace Application\Resources;
 
-class Resource
+use Crudy\Server\Kit;
+
+class Resource extends Kit
 {
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8482acea2fc768c0044822464a22ccc",
-    "content-hash": "5c1b4fa415c0d01cc451f8b076dd7871",
+    "hash": "70470f375a946e3524ba106b58c218c0",
+    "content-hash": "9835d20de9537eda1774c2ddfa65adab",
     "packages": [
         {
             "name": "hoa/consistency",
@@ -405,6 +405,72 @@
                 "zformat"
             ],
             "time": "2016-03-15 14:55:30"
+        },
+        {
+            "name": "ihor/nspl",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ihor/Nspl.git",
+                "reference": "8eec25efd0febabd41b882d2f94f8efda88a8c73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ihor/Nspl/zipball/8eec25efd0febabd41b882d2f94f8efda88a8c73",
+                "reference": "8eec25efd0febabd41b882d2f94f8efda88a8c73",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ihor Burlachenko",
+                    "email": "ihor.burlachenko@gmail.com"
+                }
+            ],
+            "description": "Compact functional programming oriented code and more in Non-standard PHP library (NSPL)",
+            "keywords": [
+                "curried",
+                "curry",
+                "defaultarray",
+                "flatten",
+                "functional",
+                "generator",
+                "higher-order",
+                "itemGetter",
+                "iterator",
+                "list",
+                "memoize",
+                "partial",
+                "partial application",
+                "programming",
+                "propertyGetter",
+                "python",
+                "random",
+                "weighted",
+                "weighted random",
+                "zip"
+            ],
+            "time": "2016-06-13 21:19:14"
         }
     ],
     "packages-dev": [
@@ -687,6 +753,44 @@
                 "webdriver"
             ],
             "time": "2016-06-04 00:02:34"
+        },
+        {
+            "name": "flow/jsonpath",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlowCommunications/JSONPath.git",
+                "reference": "e064398010089f9efb46044f85ee63c458ae89e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FlowCommunications/JSONPath/zipball/e064398010089f9efb46044f85ee63c458ae89e1",
+                "reference": "e064398010089f9efb46044f85ee63c458ae89e1",
+                "shasum": ""
+            },
+            "require-dev": {
+                "peekmo/jsonpath": "dev-master",
+                "phpunit/phpunit": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Flow\\JSONPath": "src/",
+                    "Flow\\JSONPath\\Test": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Frank",
+                    "email": "stephen@flowsa.com"
+                }
+            ],
+            "description": "JSONPath implementation for parsing, searching and flattening arrays",
+            "time": "2015-10-12 07:39:47"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2821,7 +2925,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "psy/psysh": 0
+        "psy/psysh": 0,
+        "flow/jsonpath": 0
     },
     "prefer-stable": false,
     "prefer-lowest": false,

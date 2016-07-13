@@ -9,7 +9,8 @@
   },
   "require-dev": {
     "codeception/codeception": "^2.2",
-    "psy/psysh": "@stable"
+    "psy/psysh": "@stable",
+    "flow/jsonpath": "@stable"
   },
   "autoload": {
     "psr-4": {
