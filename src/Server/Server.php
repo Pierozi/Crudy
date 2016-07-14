@@ -41,6 +41,9 @@ class Server
      */
     public function __construct ($resourcesNameSpace = '\Application\Resources')
     {
+        //TODO must change namespace without default for avoid production use test class
+        //TODO rename ns in correct test name for avoid confusion
+
         $this->resourcesNameSpace = $resourcesNameSpace;
         $this->router = new Http();
 
