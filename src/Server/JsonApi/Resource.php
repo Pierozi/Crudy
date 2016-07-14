@@ -36,7 +36,7 @@ class Resource
     public function __construct(string $type, string $id = null, array $attributes = null)
     {
         $this->type       = $type;
-        $this->id         = Consistency::uuid();
+        $this->id         = $id ?: Consistency::uuid();
         $this->attributes = $attributes;
     }
 
