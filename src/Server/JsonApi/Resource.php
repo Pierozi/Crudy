@@ -49,7 +49,7 @@ class Resource
         $response = [
             "type"       => $this->type,
             "id"         => $this->id,
-            "attributes" => $this->attributes,
+            "attributes" => empty($this->attributes) ? null : $this->attributes,
         ];
 
         if (0 < count($this->meta)) {

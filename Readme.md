@@ -98,9 +98,11 @@ GET /articles/1/comments HTTP/1.1
 
 # TODOS
 
-# TU codeception
+# Features
  - [x] Content Negotiation - Server Responsibilities
- - [x] Document Structure - Top Level / input
+ - [x] Document Structure - Top Level
+ - [x] Input / Output data integrity
+ - [x] Dynamic namespace with HYPHEN-MINUS separator as resource URI
  - [x] Single error object
  - [ ] Multiples error object (with hoa group exception)
  - [ ] URL Parameters

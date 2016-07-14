@@ -3,6 +3,7 @@
 namespace Crudy\Server\JsonApi;
 
 use Hoa\Router\Http\Http;
+use Hoa\Router\Router;
 
 class Document
 {
@@ -98,14 +99,17 @@ class Document
     {
         $data = [];
 
-        if (1 === $resources->count()) {
-
-            $data = $resources->current();
-        }
-
         foreach ($resources as $resource) {
 
             $data[] = $resource->toJson();
+        }
+
+        $rule = $this->router->getTheRule();
+
+        if ('rr' === $rule[Router::RULE_ID]
+            && 0 !== count($data)
+        ) {
+            $data = current($data);
         }
 
         $response['data'] = $data;

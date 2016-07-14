@@ -1,6 +1,7 @@
 <?php
 
 namespace Crudy\Server;
+use Crudy\Server\JsonApi\Exception;
 use Crudy\Server\JsonApi\Resource;
 use Crudy\Server\JsonApi\View;
 use Hoa\Router;
@@ -9,7 +10,7 @@ use Hoa\Router;
  * Class Resource
  * @package Crudy\Server
  */
-class Kit extends \Hoa\Dispatcher\Kit
+abstract class Kit extends \Hoa\Dispatcher\Kit
 {
     /**
      * @var \Crudy\Server\JsonApi\Document
@@ -28,14 +29,28 @@ class Kit extends \Hoa\Dispatcher\Kit
      */
     public $view       = null;
 
+    /**
+     * Kit constructor.
+     * @param Router $router
+     * @param Dispatcher $dispatcher
+     * @param View $view
+     */
     public function __construct(Router $router, Dispatcher $dispatcher, View $view)
     {
         parent::__construct($router, $dispatcher, $view);
 
         $this->document = $view->getDocument();
+        $this->getType();
+    }
 
-        $reflection = new \ReflectionClass(static::class);
-        $this->type = mb_strtolower($reflection->getShortName());
+    /**
+     * @return mixed|string
+     */
+    protected function getType()
+    {
+        $ns = explode('\\', static::class);
+
+        return $this->type = mb_strtolower($ns[count($ns) - 2]);
     }
 
     /**
@@ -74,5 +89,13 @@ class Kit extends \Hoa\Dispatcher\Kit
     protected function addResource(Resource $resource)
     {
         $this->view->addResource($resource);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function notFound()
+    {
+        throw new Exception('Resource not found', 404);
     }
 }

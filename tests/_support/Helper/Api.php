@@ -9,11 +9,27 @@ use Flow\JSONPath\JSONPathException;
 
 class Api extends \Codeception\Module
 {
+    public function seeResponseJsonArrayCountEqual($expression, $nb)
+    {
+        $jsonResult = $this->jsonPathFind($expression);
+        $count = count($jsonResult->data()[0]);
+
+        if ($nb === $count) {
+
+            $this->assertTrue(true);
+
+            return;
+        }
+
+        $this->assertFalse(true, "Xpath array must contain $nb lines instead $count");
+    }
+
     /**
-     * @param $path expected JSONPath expression syntax
+     * @param $expression
+     * @return static
      * @throws \Codeception\Exception\ModuleException
      */
-    public function cantSeeResponseJsonMatchesPath($expression)
+    public function jsonPathFind($expression)
     {
         $response = $this->getModule('REST')->response;
         $response = json_decode($response);
@@ -25,17 +41,6 @@ class Api extends \Codeception\Module
 
         $jsonPath = new JSONPath($response);
 
-        try {
-            $jsonResult = $jsonPath->find($expression);
-        } catch (JSONPathException $e) {
-            $this->assertTrue(true, 'Xpath not found in json response');
-        }
-
-        if (false === $jsonResult->valid()) {
-            $this->assertTrue(true, 'Xpath not found in json response');
-            return;
-        }
-
-        $this->assertFalse(true, "$expression found response => \n" . json_encode($jsonResult->data()));
+        return $jsonPath->find($expression);
     }
 }

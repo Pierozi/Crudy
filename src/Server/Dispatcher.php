@@ -61,6 +61,16 @@ class Dispatcher extends \Hoa\Dispatcher\Dispatcher
             $_method = 'asynchronous.able';
         }
 
+        if (false !== strpos($variables['resourcename'], '-')) {
+
+            $variables['resourcename'] = implode('\\', \nspl\a\map(
+                'ucfirst',
+                explode('-', $variables['resourcename'])
+            ));
+
+            $this->_parameters->setParameter('variables.resourcename', $variables['resourcename']);
+        }
+
         $this->_parameters->setKeyword('call', $class);
         $this->_parameters->setKeyword('able', $method);
 

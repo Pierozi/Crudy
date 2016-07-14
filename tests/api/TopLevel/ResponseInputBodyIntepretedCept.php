@@ -12,3 +12,7 @@ $I->seeResponseJsonMatchesJsonPath('$.data..type');
 $I->seeResponseJsonMatchesJsonPath('$.data..id');
 $I->seeResponseJsonMatchesJsonPath('$.data..attributes');
 $I->seeResponseJsonMatchesJsonPath('$.data..meta');
+$I->seeResponseJsonMatchesJsonPath('$.data.[?(@.type == "health")]');
+$I->seeResponseJsonMatchesJsonPath('$.data.[?(@.id == "999")]');
+$I->seeResponseContains('{"title":"input resource creation","t":true,"f":false,"n":null}');
+$I->seeResponseContains('{"body-length":202,"t":true,"f":false,"n":null,"foo":{"bar":"rab","baz":"zab"}}');
