@@ -32,10 +32,16 @@ class Server
     protected $document;
 
     /**
+     * @var string
+     */
+    protected $resourcesNameSpace;
+
+    /**
      * Server constructor.
      */
-    public function __construct ()
+    public function __construct ($resourcesNameSpace = '\Application\Resources')
     {
+        $this->resourcesNameSpace = $resourcesNameSpace;
         $this->router = new Http();
 
         $this->errorHandler();
@@ -45,14 +51,14 @@ class Server
     }
 
     /**
-     *
+     * Resolve actual request with Api rules
      */
     public function resolve()
     {
         $view = new View($this->document);
 
         $this->dispatcher = new Dispatcher([
-            'resource.root.ns' => '\Application\Resources',
+            'resource.root.ns' => $this->resourcesNameSpace,
             'synchronous.call' => '(:%resource.root.ns:)\(:%variables.resourcename:U:)\(:call:U:)',
             'synchronous.able' => '(:able:)',
         ]);

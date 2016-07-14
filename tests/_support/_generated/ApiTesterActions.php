@@ -1196,8 +1196,7 @@ trait ApiTesterActions
     /**
      * [!] Method is generated. Documentation taken from corresponding module.
      *
-     * @param $path expected JSONPath expression syntax
-     * @throws \Codeception\Exception\ModuleException
+     *
      * Conditional Assertion: Test won't be stopped on fail
      * @see \Helper\Api::seeResponseJsonArrayCountEqual()
      */
@@ -1207,8 +1206,7 @@ trait ApiTesterActions
     /**
      * [!] Method is generated. Documentation taken from corresponding module.
      *
-     * @param $path expected JSONPath expression syntax
-     * @throws \Codeception\Exception\ModuleException
+     *
      * @see \Helper\Api::seeResponseJsonArrayCountEqual()
      */
     public function seeResponseJsonArrayCountEqual($expression, $nb) {
