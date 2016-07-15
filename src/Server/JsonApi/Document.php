@@ -52,6 +52,10 @@ class Document
         if (array_key_exists('HTTP_CONTENT_TYPE', $_SERVER)) {
 
             list($contentType) = explode(';', $_SERVER['HTTP_CONTENT_TYPE']);
+
+        } elseif (array_key_exists('CONTENT_TYPE', $_SERVER)) {
+
+            list($contentType) = explode(';', $_SERVER['CONTENT_TYPE']);
         }
 
         if (!array_key_exists('HTTP_ACCEPT', $_SERVER)
