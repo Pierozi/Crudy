@@ -59,7 +59,7 @@ class Document
         }
 
         if (!array_key_exists('HTTP_ACCEPT', $_SERVER)
-            || self::CONTENT_TYPE !== $_SERVER['HTTP_ACCEPT']
+            || (self::CONTENT_TYPE !== $_SERVER['HTTP_ACCEPT'] && '*/*' !== $_SERVER['HTTP_ACCEPT'])
         ) {
             throw new Exception('Header must Accept application/vnd.api+json', 406);
         }
