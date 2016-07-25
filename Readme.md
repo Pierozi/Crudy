@@ -104,6 +104,7 @@ GET /articles/1/comments HTTP/1.1
  - [x] Input / Output data integrity
  - [x] Dynamic namespace with HYPHEN-MINUS separator as resource URI
  - [x] Single error object
+ - [x] Get Request header
  - [ ] Multiples error object (with hoa group exception)
  - [ ] URL Parameters
   - [ ] fields

@@ -10,6 +10,8 @@ class Document
     const CONTENT_TYPE = 'application/vnd.api+json';
     const SPECIFICATION_VERSION = '1.0';
 
+    protected static $headers;
+
     protected $router;
     protected $bodyAsJson;
     protected $responseHttpCode = 200;
@@ -188,5 +190,64 @@ class Document
         $this->meta[$key] = $value;
 
         return $this;
+    }
+
+    /**
+     * Return specific Header
+     *
+     * @param string $key
+     * @return null
+     */
+    public function getHeader(string $key)
+    {
+        $key     = mb_strtoupper($key);
+        $headers = $this->getHeaders();
+
+        if (array_key_exists($key, $headers)) {
+
+            return $headers[$key];
+        }
+
+        return null;
+    }
+
+    /**
+     * Extract HTTP Header from request
+     *
+     * @return array
+     */
+    public function getHeaders() : array
+    {
+        if (null !== static::$headers) {
+
+            return static::$headers;
+        }
+
+        $headers = [];
+
+        foreach ($_SERVER as $key => $value) {
+
+            $key = mb_strtoupper($key);
+
+            if ('HTTP_' !== substr($key, 0, 5)) {
+                continue;
+            }
+
+            $key = str_replace('_', '-',
+                substr($key, 5)
+            );
+
+            if ('false' === mb_strtolower($value)) {
+                $value = false;
+            }
+
+            if ('true' === mb_strtolower($value)) {
+                $value = true;
+            }
+
+            $headers[$key] = $value;
+        }
+
+        return static::$headers = $headers;
     }
 }
