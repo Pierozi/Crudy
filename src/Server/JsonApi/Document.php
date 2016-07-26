@@ -113,7 +113,7 @@ class Document
 
         $rule = $this->router->getTheRule();
 
-        if ('rr' === $rule[Router::RULE_ID]
+        if (in_array($rule[Router::RULE_ID], ['cr', 'rr', 'ur'])
             && 0 !== count($data)
         ) {
             $data = current($data);
