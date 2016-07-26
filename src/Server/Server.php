@@ -76,29 +76,32 @@ class Server
      */
     protected function registerRules()
     {
+        $singleRegex = '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-zA-Z-]+)/?';
+        $manyRegex   = '(?<resourceName>[a-z-]+)/?';
+        
         // Create resource rule
         $this->router
-            ->post('cr', '(?<resourceName>[a-z-]+)/?', 'Create', 'create')
+            ->post('cr', $manyRegex, 'Create', 'create')
         ;
 
         // Read resource rule
         $this->router
-            ->get('rr', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-fA-F-]+)/?', 'Read', 'read')
+            ->get('rr', $singleRegex, 'Read', 'read')
         ;
 
         // Read many resource rule
         $this->router
-            ->get('rar', '(?<resourceName>[a-z-]+)/?', 'Read', 'readAll')
+            ->get('rar', $manyRegex, 'Read', 'readAll')
         ;
 
         // Update resource rule
         $this->router
-            ->patch('ur', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-fA-F-]+)/?', 'Update', 'update')
+            ->patch('ur', $singleRegex, 'Update', 'update')
         ;
 
         // Delete resource rule
         $this->router
-            ->delete('dr', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-fA-F-]+)/?', 'Delete', 'delete')
+            ->delete('dr', $singleRegex, 'Delete', 'delete')
         ;
     }
 
