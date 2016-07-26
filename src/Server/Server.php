@@ -128,7 +128,7 @@ class Server
                     throw new \Exception($exception->getMessage(), $exception->getCode(), $exception);
                 }
 
-                die('internal server error'); //TODO must implement jsonapi error format
+                throw new Exception('Internal server error', 500);
             }
         );
     }
