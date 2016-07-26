@@ -47,7 +47,8 @@ class Document
         if ('OPTIONS' === $_SERVER['REQUEST_METHOD']
             && array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_METHOD', $_SERVER)
         ) {
-            header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE');
+            header('Access-Control-Allow-Methods: POST, GET, PATCH, DELETE, PUT, HEAD');
+            header('Access-Control-Allow-Headers: origin, accept, content-type');
             exit;
         }
 
