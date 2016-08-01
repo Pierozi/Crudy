@@ -41,6 +41,8 @@ class Document
         $contentType = null;
         $method      = $this->router->getMethod();
 
+	//TODO WARNING we should let user define he's CORS rules
+	//TODO WARNING we should let user define he's CORS rules
         header('Access-Control-Expose-Headers: set');
         header('Access-Control-Allow-Origin: *');
 
@@ -48,8 +50,11 @@ class Document
             && array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_METHOD', $_SERVER)
         ) {
             header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE');
+            header('Access-Control-Allow-Headers: origin, accept, content-type, authorization');
             exit;
         }
+	//TODO WARNING we should let user define he's CORS rules
+	//TODO WARNING we should let user define he's CORS rules
 
         if (array_key_exists('HTTP_CONTENT_TYPE', $_SERVER)) {
 
@@ -66,7 +71,7 @@ class Document
             throw new Exception('Header must Accept application/vnd.api+json', 406);
         }
 
-        if (('post' === $method || 'put' === $method)
+        if (in_array($method, ['post', 'patch', 'put'])
             && self::CONTENT_TYPE !== $contentType
         ) {
             throw new Exception('Unsupported Media Type', 415);
