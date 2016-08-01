@@ -4,5 +4,5 @@ namespace Crudy\Server\Crud;
 
 interface UpdateInterface
 {
-    public function update();
+    public function update(string $resourceId);
 }

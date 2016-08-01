@@ -4,5 +4,5 @@ namespace Crudy\Server\Crud;
 
 interface DeleteInterface
 {
-    public function delete();
+    public function delete(string $resourceId);
 }
