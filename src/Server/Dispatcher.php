@@ -94,20 +94,6 @@ class Dispatcher extends \Hoa\Dispatcher\Dispatcher
                 $e
             );
         }
-        
-        /**
-         * I don't understand the utility to make un instance of thi 
-         * kit because it's already extend by end Resource class
-         */
-        /*$kitName = $this->getKitName();
-
-        if (!empty($kitName) &&
-            !isset($variables['_this']) ||
-            !(isset($variables['_this']) &&
-                ($variables['_this'] instanceof $kitName))) {
-            $variables['_this'] = Consistency\Autoloader::dnew($kitName, $rtv);
-            $variables['_this']->construct();
-        }*/
 
         if (!method_exists($class, $method)) {
             throw new Exception(
