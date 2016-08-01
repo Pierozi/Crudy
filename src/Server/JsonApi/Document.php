@@ -49,7 +49,7 @@ class Document
         if ('OPTIONS' === $_SERVER['REQUEST_METHOD']
             && array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_METHOD', $_SERVER)
         ) {
-            header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE');
+            header('Access-Control-Allow-Methods: POST, GET, PATCH, DELETE, PUT, HEAD');
             header('Access-Control-Allow-Headers: origin, accept, content-type, authorization');
             exit;
         }
@@ -117,7 +117,7 @@ class Document
 
         $rule = $this->router->getTheRule();
 
-        if ('rr' === $rule[Router::RULE_ID]
+        if (in_array($rule[Router::RULE_ID], ['cr', 'rr', 'ur'])
             && 0 !== count($data)
         ) {
             $data = current($data);
