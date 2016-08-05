@@ -71,9 +71,31 @@ class View implements \Hoa\View\Viewable
     /**
      * @description 'Get the data send to the resource extract from http body';
      */
-    public function getData()
+    public function getData() //TODO BC-BREAK FOR RENAME TO getAttributes
     {
-        return $this->document->extractData();
+        $data = $this->document->extractData();
+
+        if (null === $data) {
+            return $data;
+        }
+
+        return $data->attributes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        $data = $this->document->extractData();
+
+        if (null === $data || !isset($data->id)) {
+            return $data;
+        }
+
+        //TODO check if ID is authorized ID - check regexp of dispatcher
+
+        return $data->id;
     }
 
     /**

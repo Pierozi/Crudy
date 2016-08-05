@@ -86,7 +86,7 @@ class Document
     {
         if (null !== $this->bodyAsJson) {
 
-            return $this->bodyAsJson->data->attributes;
+            return $this->bodyAsJson->data;
         }
         
         $input = file_get_contents('php://input');
@@ -100,7 +100,7 @@ class Document
             return $this->bodyAsJson = null;
         }
 
-        return $this->bodyAsJson->data->attributes;
+        return $this->bodyAsJson->data;
     }
 
     /**
