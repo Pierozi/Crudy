@@ -90,7 +90,7 @@ class View implements \Hoa\View\Viewable
         $data = $this->document->extractData();
 
         if (null === $data || !isset($data->id)) {
-            return $data;
+            return null;
         }
 
         //TODO check if ID is authorized ID - check regexp of dispatcher
