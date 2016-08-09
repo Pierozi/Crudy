@@ -13,10 +13,10 @@ class Create extends Resource implements CreateInterface
             ->hideVersion()
             ->setMeta('copyright', 'Copyright 2015 Example Corp.')
             ->setMeta('authors', [
-                "Yehuda Katz",
-                "Steve Klabnik",
-                "Dan Gebhardt",
-                "Tyler Kellen"
+                'Yehuda Katz',
+                'Steve Klabnik',
+                'Dan Gebhardt',
+                'Tyler Kellen',
             ])
         ;
     }

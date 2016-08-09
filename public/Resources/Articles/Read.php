@@ -21,14 +21,14 @@ class Read extends Resource implements ReadInterface
     public function readAll()
     {
         $this->createResource(1, [
-            'foo'   => 'bar',
-            'baz'   => false,
-            'dummy' => 'lipsum'
+            'foo' => 'bar',
+            'baz' => false,
+            'dummy' => 'lipsum',
         ]);
 
         $this->createResource(42, [
             'foo' => 'bar',
-            'baz' => true
+            'baz' => true,
         ]);
     }
 }

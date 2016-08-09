@@ -8,11 +8,11 @@ $I->haveHttpHeader('Content-Type', 'application/vnd.api+json');
 $id = \Hoa\Consistency\Consistency::uuid();
 
 $data = json_encode([
-    "data" => [
-        "id"         => $id,
-        "type"       => "articles",
-        "attributes" => [
-            "nocontent" => true,
+    'data' => [
+        'id' => $id,
+        'type' => 'articles',
+        'attributes' => [
+            'nocontent' => true,
         ],
     ],
 ]);

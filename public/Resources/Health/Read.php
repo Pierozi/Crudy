@@ -10,7 +10,7 @@ class Read extends Resource implements ReadInterface
     public function read(string $resourceId)
     {
         $this->createResource(null, [
-            'devMode'            => defined('__DEV_MODE__'),
+            'devMode' => defined('__DEV_MODE__'),
             'hasReceiveBodyData' => !is_null($this->data),
         ]);
     }
@@ -18,7 +18,7 @@ class Read extends Resource implements ReadInterface
     public function readAll()
     {
         $this->createResource(null, [
-            'devMode'            => defined('__DEV_MODE__'),
+            'devMode' => defined('__DEV_MODE__'),
             'hasReceiveBodyData' => !is_null($this->data),
         ]);
     }

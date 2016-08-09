@@ -9,23 +9,24 @@ class Create extends Resource implements CreateInterface
 {
     public function create()
     {
-        $id         = $this->view->getId();
-        $attributes = $this->view->getData();
+        $id = $this->view->getId();
+        $attributes = $this->view->getAttributes();
 
         if (!empty($id)) {
             $this->view->noContent();
+
             return;
         }
 
         if (isset($attributes->accepted) && true === $attributes->accepted) {
-
             $this->acceptedResource(Consistency::uuid());
+
             return;
         }
 
         if (isset($attributes->forbidden) && true === $attributes->forbidden) {
-
             $this->forbidden();
+
             return;
         }
 

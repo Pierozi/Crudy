@@ -8,7 +8,7 @@ class Update extends Resource implements UpdateInterface
 {
     public function update(string $resourceId)
     {
-        $attributes = $this->view->getData();
+        $attributes = $this->view->getAttributes();
 
         $this->createResource($resourceId, $attributes);
     }

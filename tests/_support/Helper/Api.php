@@ -1,11 +1,11 @@
 <?php
+
 namespace Helper;
 
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
 use Flow\JSONPath\JSONPath;
-use Flow\JSONPath\JSONPathException;
 
 class Api extends \Codeception\Module
 {
@@ -15,7 +15,6 @@ class Api extends \Codeception\Module
         $count = count($jsonResult->data()[0]);
 
         if ($nb === $count) {
-
             $this->assertTrue(true);
 
             return;
@@ -26,7 +25,9 @@ class Api extends \Codeception\Module
 
     /**
      * @param $expression
+     *
      * @return static
+     *
      * @throws \Codeception\Exception\ModuleException
      */
     public function jsonPathFind($expression)
@@ -35,7 +36,6 @@ class Api extends \Codeception\Module
         $response = json_decode($response);
 
         if (null === $response) {
-
             $this->assertFalse(true, 'Response is not in Json Format');
         }
 

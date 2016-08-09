@@ -71,7 +71,15 @@ class View implements \Hoa\View\Viewable
     /**
      * @description 'Get the data send to the resource extract from http body';
      */
-    public function getData() //TODO BC-BREAK FOR RENAME TO getAttributes
+    public function getData()
+    {
+        return $this->document->extractData();
+    }
+
+    /**
+     * @description 'Get the attributes node of data send to the resource extract from http body';
+     */
+    public function getAttributes()
     {
         $data = $this->document->extractData();
 

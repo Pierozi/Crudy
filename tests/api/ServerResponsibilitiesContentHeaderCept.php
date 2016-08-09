@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 $I = new ApiTester($scenario);
 $I->wantTo('Create resource request without content-type throw 415 err code');

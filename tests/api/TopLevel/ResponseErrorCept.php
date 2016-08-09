@@ -10,4 +10,3 @@ $I->seeResponseJsonMatchesJsonPath('$.errors');
 $I->seeResponseJsonMatchesJsonPath('$.errors..status');
 $I->seeResponseJsonMatchesJsonPath('$.errors..code');
 $I->seeResponseJsonMatchesJsonPath('$.errors..title');
-

@@ -10,7 +10,7 @@ class Read extends Resource implements ReadInterface
     public function read(string $resourceId)
     {
         $headers = $this->document->getHeaders();
-        $equal   = (
+        $equal = (
             $headers['X-AUTHORIZATION'] === $this->document->getHeader('x-authorization')
             && $headers['X-CRUDY-TU'] === $this->document->getHeader('X-CRUDY-TU')
             && $headers['X-BEHAT'] === $this->document->getHeader('X-BEHAT')
@@ -19,7 +19,7 @@ class Read extends Resource implements ReadInterface
 
         $this->createResource(null, [
             'headers' => $headers,
-            'equal'   => $equal,
+            'equal' => $equal,
         ]);
     }
 

@@ -1,13 +1,12 @@
 <?php
 
 require_once dirname(__DIR__)
-    . DIRECTORY_SEPARATOR
-    . 'vendor'
-    . DIRECTORY_SEPARATOR
-    . 'autoload.php'
-;
+    .DIRECTORY_SEPARATOR
+    .'vendor'
+    .DIRECTORY_SEPARATOR
+    .'autoload.php';
 
-include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'tool.php';
+include dirname(__DIR__).DIRECTORY_SEPARATOR.'tool.php';
 
 //TODO IF DEV
 
@@ -22,7 +21,7 @@ if (defined('__DEV_MODE__')) {
 
 \Hoa\Exception\Error::enableErrorHandler(true);
 
-/**
+/*
  * PHP Settings
  */
 date_default_timezone_set('Europe/Paris');
