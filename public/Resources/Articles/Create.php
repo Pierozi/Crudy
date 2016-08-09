@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Resources\Articles;
+namespace CrudyApplication\Resources\Articles;
 
 use Crudy\Server\Crud\CreateInterface;
 

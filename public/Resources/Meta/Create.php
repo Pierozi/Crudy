@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\Resources\Meta;
+namespace CrudyApplication\Resources\Meta;
 
-use Application\Resources\Resource;
+use CrudyApplication\Resources\Resource;
 use Crudy\Server\Crud\CreateInterface;
 
 class Create extends Resource implements CreateInterface

@@ -30,3 +30,6 @@ replace-var-config:
 
 log-error:
 	tail -f -n 0 log/error.log
+
+tu:
+	./vendor/bin/codecept run -d

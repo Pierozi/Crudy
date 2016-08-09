@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\Resources\Data\Without\Attribute;
+namespace CrudyApplication\Resources\Data\Without\Attribute;
 
-use Application\Resources\Resource;
+use CrudyApplication\Resources\Resource;
 use Crudy\Server\Crud\ReadInterface;
 
 class Read extends Resource implements ReadInterface

@@ -15,8 +15,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Crudy\\": "src/",
-      "Application\\": "public/"
+      "Crudy\\": "src/"
+    },
+    "exclude-from-classmap": ["/public/", "/tests/"]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CrudyApplication\\": "public/"
     }
   }
 }
