@@ -12,6 +12,8 @@ use Hoa\Router;
  */
 abstract class Kit extends \Hoa\Dispatcher\Kit
 {
+    const RESOURCE_TYPE_ACCEPTED = 'queue-jobs';
+
     /**
      * @var \Crudy\Server\JsonApi\Document
      */
@@ -41,6 +43,22 @@ abstract class Kit extends \Hoa\Dispatcher\Kit
 
         $this->document = $view->getDocument();
         $this->getType();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function notFound()
+    {
+        throw new Exception('Resource not found', 404);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function forbidden(string $message = "You're not authorized to create this resource.")
+    {
+        throw new Exception($message, 403);
     }
 
     /**
@@ -91,11 +109,24 @@ abstract class Kit extends \Hoa\Dispatcher\Kit
         $this->view->addResource($resource);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function notFound()
-    {
-        throw new Exception('Resource not found', 404);
+    protected function acceptedResource(
+        string $id
+        , $attributes = null
+        , string $type = self::RESOURCE_TYPE_ACCEPTED
+    ) {
+        $resource = new Resource($type, $id);
+
+        if (null === $attributes) {
+
+            $attributes = ['status' => 'Pending request, waiting other process'];
+        }
+
+        $resource
+            ->setAttributes($attributes)
+            ->fillLinks(['self' => $this->type . '/' . $type . '/' . $id])
+        ;
+
+        $this->view->addResource($resource);
+        $this->document->setHttpCode(202);
     }
 }

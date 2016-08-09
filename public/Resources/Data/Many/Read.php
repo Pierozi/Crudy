@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\Resources\Data\Many;
+namespace CrudyApplication\Resources\Data\Many;
 
-use Application\Resources\Resource;
+use CrudyApplication\Resources\Resource;
 use Crudy\Server\Crud\ReadInterface;
 
 class Read extends Resource implements ReadInterface

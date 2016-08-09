@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Resources;
+namespace CrudyApplication\Resources;
 
 use Crudy\Server\Kit;
 

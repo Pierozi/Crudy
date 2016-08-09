@@ -1,3 +1,48 @@
+# CRUDY
+
+API framework implementing [`json:api`](http://jsonapi.org/). You define the resources, it provides the api.
+
+This library is under development, I do not recommend for use in production right now.
+
+# JSON-API SUPPORTS
+
+## Features
+ - [x] Content Negotiation - Server Responsibilities
+ - [x] Document Structure - Top Level
+ - [x] Input / Output data integrity
+ - [x] Dynamic namespace with HYPHEN-MINUS separator as resource URI
+ - [x] Single error object
+ - [x] Get Request header
+ - [ ] Multiples error object (with hoa group exception)
+ - [ ] URL Parameters
+  - [ ] fields
+  - [ ] filters
+  - [ ] offset //ID (NO USE OFFSET) it's better to use here an PRIMARY value for from instead integer position
+  - [ ] limit  //Number of result from offset
+ - [x] Create resource with result 200
+ - [x] Create resource without result 204
+ - [x] Create resource in asynchronous with result 200 and data URL with ID queue job
+ - [x] Update resource
+ - [x] Delete resource
+ - [x] Read one resource
+ - [x] Read many resource
+ - [ ] Read resource with relationship and included support
+ - [ ] Included with recursive mode support
+ - [ ] Get relationship of resource
+ - [ ] Get related resource of relationship
+ - [ ] Create resource with an relationship
+ - [ ] Create resource with many relationships
+
+## Unofficial Json-Api features
+
+ - [ ] Call an command on specific resource in SYNC MODE
+ - [ ] Call an command on specific resource in ASYNC MODE - return ID of queues job
+ - [ ] Get command input format with HEAD http method
+ - [ ] List all command in queues ( ASYNC MODE )
+ - [ ] Get detail of specific command result ( ASYNC MODE )
+
+---
+
 # RESOURCE URL FORMAT
 
 /articles
@@ -95,41 +140,3 @@ GET /articles/1/comments HTTP/1.1
   }
 }
 ```
-
-# TODOS
-
-# Features
- - [x] Content Negotiation - Server Responsibilities
- - [x] Document Structure - Top Level
- - [x] Input / Output data integrity
- - [x] Dynamic namespace with HYPHEN-MINUS separator as resource URI
- - [x] Single error object
- - [x] Get Request header
- - [ ] Multiples error object (with hoa group exception)
- - [ ] URL Parameters
-  - [ ] fields
-  - [ ] filters
-  - [ ] offset //ID (NO USE OFFSET) it's better to use here an PRIMARY value for from instead integer position
-  - [ ] limit  //Number of result from offset
- - [ ] Create resource with result 200
- - [ ] Create resource without result 204
- - [ ] Create resource in asynchronous with result 200 and data URL with ID queue job
- - [ ] Update resource
- - [ ] Delete resource
- - [ ] Read one resource
- - [ ] Read many resource
- - [ ] Read resource with relationship and included support
- - [ ] Included with recursive mode support
- - [ ] Get relationship of resource
- - [ ] Get related resource of relationship
- - [ ] Create resource with an relationship
- - [ ] Create resource with many relationships
-
-# Unofficial Json-Api features
-
- - [ ] Call an command on specific resource in SYNC MODE
- - [ ] Call an command on specific resource in ASYNC MODE - return ID of queues job
- - [ ] Get command input format with HEAD http method
- - [ ] List all command in queues ( ASYNC MODE )
- - [ ] Get detail of specific command result ( ASYNC MODE )
-

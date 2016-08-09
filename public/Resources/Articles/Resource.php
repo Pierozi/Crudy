@@ -1,7 +1,7 @@
 <?php
 
-namespace Application\Resources\Articles;
+namespace CrudyApplication\Resources\Articles;
 
-class Resource extends \Application\Resources\Resource
+class Resource extends \CrudyApplication\Resources\Resource
 {
 }

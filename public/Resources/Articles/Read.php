@@ -1,22 +1,34 @@
 <?php
 
-namespace Application\Resources\Articles;
+namespace CrudyApplication\Resources\Articles;
 
 use Crudy\Server\Crud\ReadInterface;
-use Crudy\Server\Kit;
 
 class Read extends Resource implements ReadInterface
 {
-    public function read(Kit $_this, string $resourceId)
+    public function read(string $resourceId)
     {
-        echo __METHOD__, "\n";
-        var_dump($resourceId);
+        if ('42' !== $resourceId) {
+            $this->notFound();
+        }
+
+        $this->createResource($resourceId, [
+            'foo' => 'bar',
+            'baz' => true,
+        ]);
     }
 
-    public function readAll(Kit $_this)
+    public function readAll()
     {
-        echo __METHOD__, "\n";
+        $this->createResource(1, [
+            'foo'   => 'bar',
+            'baz'   => false,
+            'dummy' => 'lipsum'
+        ]);
 
-        $_this->view->getData();
+        $this->createResource(42, [
+            'foo' => 'bar',
+            'baz' => true
+        ]);
     }
 }
