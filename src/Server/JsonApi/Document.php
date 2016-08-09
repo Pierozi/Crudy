@@ -138,6 +138,14 @@ class Document
      */
     public function getHttpCode()
     {
+        $rule = $this->router->getTheRule();
+
+        if (    200 === $this->responseHttpCode
+            && 'cr' === $rule[Router::RULE_ID]
+        ) {
+            return 201;
+        }
+
         return $this->responseHttpCode;
     }
 
@@ -148,9 +156,9 @@ class Document
      */
     public function setHttpCode($code)
     {
-        if (in_array($code, Exception::HTTP_STATUS)) {
+        if (false === in_array($code, array_keys(Exception::HTTP_STATUS))) {
             
-            throw new Exception('Http code specified are not supported');
+            throw new Exception('Http code specified are not supported', 400);
         }
         
         $this->responseHttpCode = $code;

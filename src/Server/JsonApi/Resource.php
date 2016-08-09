@@ -28,6 +28,11 @@ class Resource
     protected $meta = [];
 
     /**
+     * @var array of resource links
+     */
+    protected $links = [];
+
+    /**
      * Resource constructor.
      * @param string $type
      * @param string|null $id
@@ -55,6 +60,11 @@ class Resource
         if (0 < count($this->meta)) {
 
             $response['meta'] = $this->meta;
+        }
+
+        if (0 < count($this->links)) {
+
+            $response['links'] = $this->links;
         }
 
         return $response;
@@ -106,6 +116,28 @@ class Resource
         }
 
         $this->meta += $meta;
+
+        return $this;
+    }
+
+    /**
+     * Merge links array with existent
+     * @param array|null $links
+     * @param bool $purge for drop existent value
+     * @return $this
+     */
+    public function fillLinks(array $links = null, bool $purge = false)
+    {
+        if (null === $links) {
+            return $this;
+        }
+
+        if (true === $purge) {
+
+            $this->links = [];
+        }
+
+        $this->links += $links;
 
         return $this;
     }
