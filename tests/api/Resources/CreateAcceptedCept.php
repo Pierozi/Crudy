@@ -6,10 +6,10 @@ $I->haveHttpHeader('ACCEPT', 'application/vnd.api+json');
 $I->haveHttpHeader('Content-Type', 'application/vnd.api+json');
 
 $data = json_encode([
-    "data" => [
-        "type"       => "articles",
-        "attributes" => [
-            "accepted" => true,
+    'data' => [
+        'type' => 'articles',
+        'attributes' => [
+            'accepted' => true,
         ],
     ],
 ]);
@@ -28,6 +28,6 @@ $I->seeResponseJsonMatchesJsonPath('$.data.links');
 $I->seeResponseJsonMatchesJsonPath('$..[?(@.type == "queue-jobs")]');
 $I->seeResponseContains('{"status":"Pending request, waiting other process"}');
 
-if ($response->data->links->self !== 'articles/queue-jobs/' . $response->data->id) {
+if ($response->data->links->self !== 'articles/queue-jobs/'.$response->data->id) {
     throw new \Codeception\Exception\ConditionalAssertionFailed('Resource queue jobs links not match');
 }

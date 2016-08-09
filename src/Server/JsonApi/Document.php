@@ -92,11 +92,9 @@ class Document
         $input = file_get_contents('php://input');
         $this->bodyAsJson = json_decode($input);
 
-        if (null === $this->bodyAsJson
+        if (    null === $this->bodyAsJson
             || false === isset($this->bodyAsJson->data)
-            || false === isset($this->bodyAsJson->data->attributes)
         ) {
-
             return $this->bodyAsJson = null;
         }
 

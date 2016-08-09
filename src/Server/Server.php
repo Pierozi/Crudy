@@ -1,6 +1,7 @@
 <?php
 
 namespace Crudy\Server;
+
 use Crudy\Server\JsonApi\Document;
 use Crudy\Server\JsonApi\Exception;
 use Crudy\Server\JsonApi\View;
@@ -10,12 +11,10 @@ use Hoa\Router\Exception\NotFound;
 use Hoa\Router\Http\Http;
 
 /**
- * Class Server
- * @package Crudy\Server
+ * Class Server.
  */
 class Server
 {
-
     /**
      * @var Http
      */
@@ -39,7 +38,7 @@ class Server
     /**
      * Server constructor.
      */
-    public function __construct ($resourcesNameSpace = '\Application\Resources')
+    public function __construct($resourcesNameSpace = '\Application\Resources')
     {
         //TODO must change namespace without default for avoid production use test class
         //TODO rename ns in correct test name for avoid confusion
@@ -54,7 +53,7 @@ class Server
     }
 
     /**
-     * Resolve actual request with Api rules
+     * Resolve actual request with Api rules.
      */
     public function resolve()
     {
@@ -64,6 +63,7 @@ class Server
             'resource.root.ns' => $this->resourcesNameSpace,
             'synchronous.call' => '(:%resource.root.ns:)\(:%variables.resourcename:U:)\(:call:U:)',
             'synchronous.able' => '(:able:)',
+            'command.call' => '(:%synchronous.call:)\(:%variables.commandname:U:)',
         ]);
         $this->dispatcher->setKitName(Kit::class);
         $this->dispatcher->dispatch($this->router, $view);
@@ -77,8 +77,8 @@ class Server
     protected function registerRules()
     {
         $singleRegex = '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-zA-Z-]+)/?';
-        $manyRegex   = '(?<resourceName>[a-z-]+)/?';
-        
+        $manyRegex = '(?<resourceName>[a-z-]+)/?';
+
         // Create resource rule
         $this->router
             ->post('cr', $manyRegex, 'Create', 'create')
@@ -103,6 +103,16 @@ class Server
         $this->router
             ->delete('dr', $singleRegex, 'Delete', 'delete')
         ;
+
+        // Command resource rule
+        $this->router
+            ->post('cmdE', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-zA-Z-]+)/command/(?<commandName>[a-z-]+)?', 'Command', 'exec')
+        ;
+
+        // Describe Command resource rule
+        $this->router
+            ->head('cmdD', '(?<resourceName>[a-z-]+)/(?<resourceId>[0-9a-zA-Z-]+)/command/(?<commandName>[a-z-]+)?', 'Command', 'describe')
+        ;
     }
 
     /**
@@ -115,12 +125,10 @@ class Server
                 $exception = $bucket->getData();
 
                 if ($exception instanceof Exception) {
-
                     die($exception->toJson());
                 }
 
                 if ($exception instanceof NotFound || $exception instanceof \Hoa\Dispatcher\Exception) {
-
                     new Exception('Resource not found', 404);
                 }
 

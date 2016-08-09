@@ -22,7 +22,7 @@ class Create extends Resource implements CreateInterface
                 'foo' => [
                     'bar' => 'rab',
                     'baz' => 'zab',
-                ]
+                ],
             ]
         );
     }

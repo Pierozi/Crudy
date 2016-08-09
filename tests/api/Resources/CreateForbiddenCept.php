@@ -6,10 +6,10 @@ $I->haveHttpHeader('ACCEPT', 'application/vnd.api+json');
 $I->haveHttpHeader('Content-Type', 'application/vnd.api+json');
 
 $data = json_encode([
-    "data" => [
-        "type"       => "articles",
-        "attributes" => [
-            "forbidden" => true,
+    'data' => [
+        'type' => 'articles',
+        'attributes' => [
+            'forbidden' => true,
         ],
     ],
 ]);
