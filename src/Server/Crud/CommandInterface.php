@@ -4,6 +4,6 @@ namespace Crudy\Server\Crud;
 
 interface CommandInterface
 {
-    public function exec();
+    public function exec(string $resourceId);
     public function describe();
 }
