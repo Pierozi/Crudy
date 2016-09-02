@@ -30,6 +30,30 @@ class Document
                 "version" => self::SPECIFICATION_VERSION
             ]
         ];
+
+        $this->CrossOriginSourceSharing();
+    }
+
+    public function CrossOriginSourceSharing()
+    {
+        //TODO WARNING we should let user define he's CORS rules
+        //TODO WARNING we should let user define he's CORS rules
+
+        header('Access-Control-Expose-Headers: set');
+        header('Access-Control-Allow-Origin: *');
+
+        if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
+
+            if (array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_METHOD', $_SERVER)) {
+                header('Access-Control-Allow-Methods: POST, GET, PATCH, DELETE, PUT, HEAD');
+                header('Access-Control-Allow-Headers: origin, accept, content-type, authorization');
+            }
+
+            throw new Exception('CORS WebServer avoid result', 204);
+        }
+
+        //TODO WARNING we should let user define he's CORS rules
+        //TODO WARNING we should let user define he's CORS rules
     }
 
     /**
@@ -39,23 +63,7 @@ class Document
     {
         $contentType = null;
         $method      = $this->router->getMethod();
-
-	//TODO WARNING we should let user define he's CORS rules
-	//TODO WARNING we should let user define he's CORS rules
-        header('Access-Control-Expose-Headers: set');
-        header('Access-Control-Allow-Origin: *');
-
-        if ('OPTIONS' === $_SERVER['REQUEST_METHOD']
-            && array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_METHOD', $_SERVER)
-        ) {
-            header('Access-Control-Allow-Methods: POST, GET, PATCH, DELETE, PUT, HEAD');
-            header('Access-Control-Allow-Headers: origin, accept, content-type, authorization');
-            exit;
-        }
-	//TODO WARNING we should let user define he's CORS rules
-	//TODO WARNING we should let user define he's CORS rules
-
-        $rule = $this->router->getTheRule();
+        $rule        = $this->router->getTheRule();
 
         if (in_array($rule[Router::RULE_ID], ['cmdE', 'cmdD'])) {
             return;
