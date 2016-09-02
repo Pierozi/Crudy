@@ -2,6 +2,7 @@
 
 namespace Crudy\Server;
 
+use Crudy\Server\JsonApi\Document;
 use Hoa\Consistency;
 use Hoa\Router;
 use Hoa\View;
@@ -36,6 +37,9 @@ class Dispatcher extends \Hoa\Dispatcher\Dispatcher
         Router $router,
         View\Viewable $view = null
     ) {
+        $document = new Document($router);
+        $document->headerResponsibilities();
+
         $ruleId = &$rule[Router\Router::RULE_ID];
         $variables = &$rule[Router\Router::RULE_VARIABLES];
 

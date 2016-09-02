@@ -24,7 +24,6 @@ class Document
     public function __construct (Http $router)
     {
         $this->router = $router;
-        $this->headerResponsibilities();
 
         $this->meta = [
             "jsonapi" => [
@@ -55,6 +54,12 @@ class Document
         }
 	//TODO WARNING we should let user define he's CORS rules
 	//TODO WARNING we should let user define he's CORS rules
+
+        $rule = $this->router->getTheRule();
+
+        if (in_array($rule[Router::RULE_ID], ['cmdE', 'cmdD'])) {
+            return;
+        }
 
         if (array_key_exists('HTTP_CONTENT_TYPE', $_SERVER)) {
 
