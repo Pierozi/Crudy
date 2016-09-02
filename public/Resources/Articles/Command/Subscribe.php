@@ -7,7 +7,7 @@ use CrudyApplication\Resources\Articles\Resource;
 
 class Subscribe extends Resource implements CommandInterface
 {
-    public function exec()
+    public function exec(string $resourceId)
     {
         if ('foo.bar' === $this->data->topic) {
             $this->view->noContent();
