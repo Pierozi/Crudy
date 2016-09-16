@@ -7,6 +7,7 @@ use Crudy\Server\JsonApi\Exception;
 use Crudy\Server\JsonApi\View;
 use Hoa\Event\Bucket;
 use Hoa\Event\Event;
+use Hoa\Exception\Group;
 use Hoa\Router\Exception\NotFound;
 use Hoa\Router\Http\Http;
 
@@ -130,6 +131,15 @@ class Server
 
                 if ($exception instanceof NotFound || $exception instanceof \Hoa\Dispatcher\Exception) {
                     new Exception('Resource not found', 404);
+                }
+
+                if ($exception instanceof Group) {
+
+                    if (0 === $exception->getStackSize()) {
+                        return;
+                    }
+
+                    die(Exception::groupToJson($exception));
                 }
 
                 if (defined('__DEV_MODE__')) {
