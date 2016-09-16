@@ -2,6 +2,8 @@
 
 namespace Crudy\Server\JsonApi;
 
+use Hoa\Exception\Group;
+
 class Exception extends \Hoa\Exception\Exception
 {
     const HTTP_STATUS = [
@@ -98,6 +100,28 @@ class Exception extends \Hoa\Exception\Exception
                 'title'  => self::HTTP_STATUS[$code],
                 'detail' => $this->getMessage(),
             ]]
+        ]);
+    }
+
+    public static function groupToJson(Group $group)
+    {
+        header($_SERVER['SERVER_PROTOCOL']." 400 " . self::HTTP_STATUS[400], null, 400);
+        header('Content-Type: ' . Document::CONTENT_TYPE);
+
+        $errors = [];
+
+        foreach ($group as $e) {
+
+            $errors[] = [
+                'status' => 400,
+                'code'   => $e->getCode(),
+                'title'  => self::HTTP_STATUS[400],
+                'detail' => $e->getMessage(),
+            ];
+        }
+
+        return json_encode([
+            'errors' => $errors,
         ]);
     }
 }
