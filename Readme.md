@@ -1,8 +1,15 @@
 # CRUDY
 
+[![Build Status](https://status.continuousphp.com/git-hub/Pierozi/Crudy?token=125ab79b-0ecc-483e-a797-e1bd5c5b3741&branch=master)](https://continuousphp.com/git-hub/Pierozi/Crudy)
+
 API framework implementing [`json:api`](http://jsonapi.org/). You define the resources, it provides the api.
 
 :warning: This library is under development, I do not recommend for use in production right now. :warning:
+
+# Demo
+
+I recommend you to look at Public path for understand how it's works.
+You can also look at codeception test for API Call.
 
 # JSON-API SUPPORTS
 
