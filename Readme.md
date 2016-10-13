@@ -2,7 +2,7 @@
 
 API framework implementing [`json:api`](http://jsonapi.org/). You define the resources, it provides the api.
 
-This library is under development, I do not recommend for use in production right now.
+:warning: This library is under development, I do not recommend for use in production right now. :warning:
 
 # JSON-API SUPPORTS
 
