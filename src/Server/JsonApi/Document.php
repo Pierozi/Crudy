@@ -16,14 +16,16 @@ class Document
     protected $bodyAsJson;
     protected $responseHttpCode = 200;
     protected $meta = [];
+    protected $corsList = [];
 
     /**
      * Document constructor.
      * @param Http $router
      */
-    public function __construct (Http $router)
+    public function __construct(Http $router, Array $CorsList = [])
     {
         $this->router = $router;
+        $this->corsList = $CorsList;
 
         $this->meta = [
             "jsonapi" => [
@@ -31,29 +33,33 @@ class Document
             ]
         ];
 
-        $this->CrossOriginSourceSharing();
+        $this->CrossOriginResourceSharing();
     }
 
-    public function CrossOriginSourceSharing()
+    /**
+     * cross-origin HTTP request
+     * @throws Exception
+     */
+    public function CrossOriginResourceSharing()
     {
-        //TODO WARNING we should let user define he's CORS rules
-        //TODO WARNING we should let user define he's CORS rules
-
-        header('Access-Control-Expose-Headers: set');
-        header('Access-Control-Allow-Origin: *');
+        $query = Http::getURI();
 
         if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
 
             if (array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_METHOD', $_SERVER)) {
                 header('Access-Control-Allow-Methods: POST, GET, PATCH, DELETE, PUT, HEAD');
+            }
+
+            if (array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', $_SERVER)) {
                 header('Access-Control-Allow-Headers: origin, accept, content-type, authorization');
             }
 
-            throw new Exception('CORS WebServer avoid result', 204);
+            throw new Exception('CORS WebServer avoid result', 200);
         }
 
-        //TODO WARNING we should let user define he's CORS rules
-        //TODO WARNING we should let user define he's CORS rules
+        foreach ($CorsList as $CorsVo) {
+            header($CorsVo->key . ': ' . $CorsVo->value);
+        }
     }
 
     /**
@@ -86,6 +92,7 @@ class Document
 
         if (in_array($method, ['post', 'patch', 'put'])
             && self::CONTENT_TYPE !== $contentType
+            && 'multipart/form-data' !== $contentType
         ) {
             throw new Exception('Unsupported Media Type', 415);
         }

@@ -27,4 +27,11 @@ if (defined('__DEV_MODE__')) {
 date_default_timezone_set('Europe/Paris');
 
 $Server = new \Crudy\Server\Server('\CrudyApplication\Resources');
+
+$Server
+    ->cors(new \Crudy\Server\Cors\CorsVo('Access-Control-Allow-Credentials', 'true'))
+    ->cors(new \Crudy\Server\Cors\CorsVo('Access-Control-Expose-Headers', 'set'))
+    ->cors(new \Crudy\Server\Cors\CorsVo('Access-Control-Allow-Origin', 'http://localhost:8080'))
+;
+
 $Server->resolve();

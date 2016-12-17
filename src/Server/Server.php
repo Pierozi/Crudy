@@ -53,6 +53,12 @@ class Server
         $this->document = new Document($this->router);
     }
 
+
+    public function cors(\Crudy\Server\Cors\CorsVo $corsVo)
+    {
+        return $this;
+    }
+
     /**
      * Resolve actual request with Api rules.
      */
@@ -126,10 +132,17 @@ class Server
                 $exception = $bucket->getData();
 
                 if ($exception instanceof Exception) {
+
+                    if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
+                        die;
+                    }
+
                     die($exception->toJson());
                 }
 
                 if ($exception instanceof NotFound || $exception instanceof \Hoa\Dispatcher\Exception) {
+                    var_dump($exception);
+                    die;
                     new Exception('Resource not found', 404);
                 }
 

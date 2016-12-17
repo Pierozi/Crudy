@@ -6,7 +6,8 @@
     "hoa/dispatcher": "~1.0",
     "hoa/view": "~3.0",
     "hoa/exception": "~1.0",
-    "ihor/nspl": "~1.0"
+    "ihor/nspl": "~1.0",
+    "plab/value-object": "dev-master"
   },
   "require-dev": {
     "codeception/codeception": "^2.2",
