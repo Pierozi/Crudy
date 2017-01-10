@@ -16,44 +16,54 @@ class Document
     protected $bodyAsJson;
     protected $responseHttpCode = 200;
     protected $meta = [];
+    protected $corsList = [];
 
     /**
      * Document constructor.
      * @param Http $router
      */
-    public function __construct (Http $router)
+    public function __construct(Http $router, Array $CorsList = [])
     {
         $this->router = $router;
+        $this->corsList = $CorsList;
 
         $this->meta = [
             "jsonapi" => [
                 "version" => self::SPECIFICATION_VERSION
             ]
         ];
-
-        $this->CrossOriginSourceSharing();
     }
 
-    public function CrossOriginSourceSharing()
+    public function addCors(\Crudy\Server\Cors\CorsVo $corsVo)
     {
-        //TODO WARNING we should let user define he's CORS rules
-        //TODO WARNING we should let user define he's CORS rules
+        $this->corsList[$corsVo->key] = $corsVo;
+    }
 
-        header('Access-Control-Expose-Headers: set');
-        header('Access-Control-Allow-Origin: *');
+    /**
+     * cross-origin HTTP request
+     * @throws Exception
+     */
+    public function crossOriginResourceSharing()
+    {
+        foreach ($this->corsList as $corsVo) {
+
+            if ('Access-Control-Allow-Headers' === $corsVo->key
+                && false === array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', $_SERVER)
+            ) {
+                continue;
+            }
+
+            header($corsVo->key . ': ' . $corsVo->value);
+        }
 
         if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
 
             if (array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_METHOD', $_SERVER)) {
                 header('Access-Control-Allow-Methods: POST, GET, PATCH, DELETE, PUT, HEAD');
-                header('Access-Control-Allow-Headers: origin, accept, content-type, authorization');
             }
 
-            throw new Exception('CORS WebServer avoid result', 204);
+            throw new Exception('CORS WebServer avoid result', 200);
         }
-
-        //TODO WARNING we should let user define he's CORS rules
-        //TODO WARNING we should let user define he's CORS rules
     }
 
     /**
@@ -86,6 +96,7 @@ class Document
 
         if (in_array($method, ['post', 'patch', 'put'])
             && self::CONTENT_TYPE !== $contentType
+            && 'multipart/form-data' !== $contentType
         ) {
             throw new Exception('Unsupported Media Type', 415);
         }

@@ -50,7 +50,21 @@ class Server
         $this->errorHandler();
         $this->registerRules();
 
-        $this->document = new Document($this->router);
+        $corsList = [
+            new \Crudy\Server\Cors\CorsVo('Access-Control-Allow-Headers', 'origin, accept, content-type, authorization'),
+        ];
+
+        $this->document = new Document($this->router, $corsList);
+    }
+
+    /**
+     * @param Cors\CorsVo $corsVo
+     * @return $this
+     */
+    public function cors(\Crudy\Server\Cors\CorsVo $corsVo)
+    {
+        $this->document->addCors($corsVo);
+        return $this;
     }
 
     /**
@@ -58,6 +72,8 @@ class Server
      */
     public function resolve()
     {
+        $this->document->crossOriginResourceSharing();
+
         $view = new View($this->document);
 
         $this->dispatcher = new Dispatcher([
@@ -126,6 +142,11 @@ class Server
                 $exception = $bucket->getData();
 
                 if ($exception instanceof Exception) {
+
+                    if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
+                        die;
+                    }
+
                     die($exception->toJson());
                 }
 
