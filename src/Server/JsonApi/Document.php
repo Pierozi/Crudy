@@ -32,17 +32,29 @@ class Document
                 "version" => self::SPECIFICATION_VERSION
             ]
         ];
+    }
 
-        $this->CrossOriginResourceSharing();
+    public function addCors(\Crudy\Server\Cors\CorsVo $corsVo)
+    {
+        $this->corsList[$corsVo->key] = $corsVo;
     }
 
     /**
      * cross-origin HTTP request
      * @throws Exception
      */
-    public function CrossOriginResourceSharing()
+    public function crossOriginResourceSharing()
     {
-        $query = Http::getURI();
+        foreach ($this->corsList as $corsVo) {
+
+            if ('Access-Control-Allow-Headers' === $corsVo->key
+                && false === array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', $_SERVER)
+            ) {
+                continue;
+            }
+
+            header($corsVo->key . ': ' . $corsVo->value);
+        }
 
         if ('OPTIONS' === $_SERVER['REQUEST_METHOD']) {
 
@@ -50,15 +62,7 @@ class Document
                 header('Access-Control-Allow-Methods: POST, GET, PATCH, DELETE, PUT, HEAD');
             }
 
-            if (array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', $_SERVER)) {
-                header('Access-Control-Allow-Headers: origin, accept, content-type, authorization');
-            }
-
             throw new Exception('CORS WebServer avoid result', 200);
-        }
-
-        foreach ($CorsList as $CorsVo) {
-            header($CorsVo->key . ': ' . $CorsVo->value);
         }
     }
 
