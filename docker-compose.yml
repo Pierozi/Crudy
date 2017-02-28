@@ -1,16 +1,17 @@
-php:
-  build: .
-  volumes:
-    - .:/app
-    - ./scripts/php.ini:/usr/local/etc/php/php.ini
-  command: 'php-fpm'
+version: '2'
 
-app:
-  image: nginx
-  ports:
-    - "8010:80"
-  volumes:
-    - .:/app
-    - ./scripts/nginx.conf:/etc/nginx/nginx.conf
-  links:
-    - php
+services:
+  php:
+    build: .
+    volumes:
+      - .:/app
+      - ./scripts/php.ini:/usr/local/etc/php/php.ini
+    command: 'php-fpm'
+
+  app:
+    image: nginx
+    ports:
+      - "8010:80"
+    volumes:
+      - .:/app
+      - ./scripts/nginx.conf:/etc/nginx/nginx.conf
