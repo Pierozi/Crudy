@@ -33,3 +33,6 @@ log-error:
 
 tu:
 	./vendor/bin/codecept run -d
+
+exakat:
+	docker run -it -v /home/pierozi/Projects/github/pierozi/Crudy/exacode:/usr/src/exakat/projects --rm --name my-exakat exakat/exakat project -p crudy

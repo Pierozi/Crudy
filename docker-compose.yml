@@ -14,3 +14,9 @@ app:
     - ./scripts/nginx.conf:/etc/nginx/nginx.conf
   links:
     - php
+
+exakat:
+  image: exakat/exakat
+  volumes:
+    - .:/usr/src/exakat/projects
+
