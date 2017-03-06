@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9057dcfe52cf5c934fbdb94036d1d0d",
+    "content-hash": "aa91e5264f6cd57f7b32a2eac472e3f3",
     "packages": [
         {
             "name": "hoa/consistency",
@@ -472,6 +472,50 @@
                 "zip"
             ],
             "time": "2017-01-05T21:54:28+00:00"
+        },
+        {
+            "name": "plab/value-object",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pierozi/valueObject.git",
+                "reference": "3e067c5cd9af570aaa322c63e67b999c38b989e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pierozi/valueObject/zipball/3e067c5cd9af570aaa322c63e67b999c38b989e3",
+                "reference": "3e067c5cd9af570aaa322c63e67b999c38b989e3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "atoum/atoum": "^2.8",
+                "atoum/stubs": "^2.5",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Plab\\ValueObject\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Pierre Tomasina"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/Pierozi/valueObject/graphs/contributors"
+                }
+            ],
+            "description": "A PHP library of classes for immutability object compound",
+            "time": "2016-12-16 01:42:59"
         }
     ],
     "packages-dev": [
@@ -3168,6 +3212,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "plab/value-object": 20,
         "psy/psysh": 0,
         "flow/jsonpath": 0
     },
