@@ -17,6 +17,9 @@ define('__DEV_MODE__', true);
 if (defined('__DEV_MODE__')) {
     ini_set('error_reporting', E_ALL);
     ini_set('display_errors', 1);
+
+    define('C3_CODECOVERAGE_ERROR_LOG_FILE', dirname(__DIR__) . '/c3_error.log'); //Optional (if not set the default c3 output dir will be used)
+    include dirname(__DIR__) . '/c3.php';
 }
 
 \Hoa\Exception\Error::enableErrorHandler(true);
