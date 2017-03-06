@@ -10,7 +10,8 @@
     "plab/value-object": "dev-master"
   },
   "require-dev": {
-    "codeception/codeception": "^2.2",
+    "codeception/codeception": "~2.2",
+    "codeception/c3": "~2.0",
     "psy/psysh": "@stable",
     "flow/jsonpath": "@stable"
   },
