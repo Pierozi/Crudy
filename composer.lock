@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "26b234157d8743863a2e12fe6eabd232",
+    "content-hash": "e1f0a0ce84b208c49d140608c5b9cb56",
     "packages": [
         {
             "name": "hoa/consistency",
@@ -475,7 +475,7 @@
         },
         {
             "name": "plab/value-object",
-            "version": "1.0.0-rc.1",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Pierozi/valueObject.git",
@@ -3266,7 +3266,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "plab/value-object": 5,
         "psy/psysh": 0,
         "flow/jsonpath": 0
     },
