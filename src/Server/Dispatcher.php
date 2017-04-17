@@ -37,9 +37,6 @@ class Dispatcher extends \Hoa\Dispatcher\Dispatcher
         Router $router,
         View\Viewable $view = null
     ) {
-        $document = new Document($router);
-        $document->headerResponsibilities();
-
         $ruleId = &$rule[Router\Router::RULE_ID];
         $variables = &$rule[Router\Router::RULE_VARIABLES];
 
@@ -101,6 +98,13 @@ class Dispatcher extends \Hoa\Dispatcher\Dispatcher
                 ],
                 $e
             );
+        }
+
+        if ($class->hasHeaderResponsibilities()) {
+            $view
+                ->getDocument()
+                ->headerResponsibilities()
+            ;
         }
 
         if (!method_exists($class, $method)) {

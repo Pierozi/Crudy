@@ -29,7 +29,14 @@ abstract class Kit extends \Hoa\Dispatcher\Kit
      *
      * @var View
      */
-    public $view       = null;
+    public $view = null;
+
+    /**
+     * Enable the check of header on request.
+     *
+     * @var bool
+     */
+    protected $enableHeaderResponsibilities = true;
 
     /**
      * Kit constructor.
@@ -59,6 +66,11 @@ abstract class Kit extends \Hoa\Dispatcher\Kit
     public function forbidden(string $message = "You're not authorized to create this resource.")
     {
         throw new Exception($message, 403);
+    }
+
+    public function hasHeaderResponsibilities()
+    {
+        return $this->enableHeaderResponsibilities;
     }
 
     /**
@@ -128,5 +140,11 @@ abstract class Kit extends \Hoa\Dispatcher\Kit
 
         $this->view->addResource($resource);
         $this->document->setHttpCode(202);
+    }
+
+    protected function disableHeaderResponsibilities()
+    {
+        $this->enableHeaderResponsibilities = false;
+        return $this;
     }
 }
