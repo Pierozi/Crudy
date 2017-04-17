@@ -158,4 +158,4 @@ log/
 # Codeception
 tests/_output/
 
-.idea
+.idea/

@@ -2,10 +2,14 @@
 
 namespace Crudy\Server\Cors;
 
-use Plab\ValueObject\ValueObject;
+use Plab\ValueObject\VoGetterTrait;
+use Plab\ValueObject\VoSetterDisallowTrait;
 
-class CorsVo extends ValueObject
+class CorsVo
 {
+    use VoGetterTrait;
+    use VoSetterDisallowTrait;
+
     const ACCESS = [
         'Access-Control-Allow-Origin',
         'Access-Control-Expose-Headers',
@@ -42,7 +46,7 @@ class CorsVo extends ValueObject
         $this->value = $value;
     }
 
-    public function equal(ValueObject $left, ValueObject $right)
+    public function equal(CorsVo $left, CorsVo $right)
     {
         return ($left->key === $right->key && $left->value === $right->value);
     }
