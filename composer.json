@@ -7,7 +7,7 @@
     "hoa/view": "~3.0",
     "hoa/exception": "~1.0",
     "ihor/nspl": "~1.0",
-    "plab/value-object": "dev-master"
+    "plab/value-object": "1.0.0-rc.1"
   },
   "require-dev": {
     "codeception/codeception": "~2.2",
