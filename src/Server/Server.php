@@ -155,8 +155,12 @@ class Server
                 }
 
                 if ($exception instanceof Group) {
-
-                    if (0 === $exception->getStackSize()) {
+                    try {
+                        // Handle the error of HOA on group variable NULL first send event
+                        if (0 === $exception->getStackSize()) {
+                            return;
+                        }
+                    } catch (\Throwable $throwable) {
                         return;
                     }
 
